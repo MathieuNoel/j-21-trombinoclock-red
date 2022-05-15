@@ -7,6 +7,10 @@ const router = require('./app/router');
 
 // on crée l'application express
 const app = express();
+
+// on ajoute le middleware express.urlencoded pour crée un req.body 
+app.use(express.urlencoded({extended: true}));
+
 // on déclare une variable PORT qui prend pour valeur la variable d'environement PORT si elle existe, sinon 5050
 const PORT = process.env.PORT || 5050;
 

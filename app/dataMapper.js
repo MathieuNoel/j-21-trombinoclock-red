@@ -18,7 +18,6 @@ const dataMapper = {
   async findAllPromos() {
     const sql = 'SELECT * FROM "promo"';
     const results = await client.query(sql);
-    console.log(results.rows)
     return results.rows;
   },
 
@@ -47,6 +46,29 @@ const dataMapper = {
     const results = await client.query(sql, [id]);
     return results.rows;
   },
+  /**
+   * creat a new student in a specific promo
+   * @param {obj} param0- contain req.body 
+   * @returns void
+   */
+  async creatNewStudent({
+    first_name:f_n,
+    last_name:l_n,
+    github_username:g_n,
+    promo:p
+  }) { 
+    const query = {
+      text: `INSERT INTO "student" ("first_name","last_name","github_username","promo_id") VALUES ($1,$2,$3,$4)`,
+      values: [f_n, l_n, g_n, p],
+    }
+    // console.log('LA!!!', p)  
+    // const sql = `INSERT INTO "student" ("first_name","last_name","github_username","promo_id") VALUES ($1,$2,$3,$4) RETURNING * `;
+    // j'ai utiltsé un RETURNING * pour véifier les infos de ma demande sql.
+    //const results = await client.query(sql, [f_n, l_n, g_n, p])
+    const results = await client.query(query);
+    console.log('test1',results)
+  }
+
 };
 
 module.exports = dataMapper;
