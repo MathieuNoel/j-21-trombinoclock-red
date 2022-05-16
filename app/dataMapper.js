@@ -60,13 +60,11 @@ const dataMapper = {
     const query = {
       text: `INSERT INTO "student" ("first_name","last_name","github_username","promo_id") VALUES ($1,$2,$3,$4)`,
       values: [f_n, l_n, g_n, p],
-    }
-    // console.log('LA!!!', p)  
+    }      
     // const sql = `INSERT INTO "student" ("first_name","last_name","github_username","promo_id") VALUES ($1,$2,$3,$4) RETURNING * `;
     // j'ai utiltsé un RETURNING * pour véifier les infos de ma demande sql.
     //const results = await client.query(sql, [f_n, l_n, g_n, p])
-    const results = await client.query(query);
-    console.log('test1',results)
+    const results = await client.query(query);    
   }
 
 };
